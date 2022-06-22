@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Server.mapper.UserMapper">
+
+    <select id="userCheck" parameterType="Account" resultType="String">
+        select userId from account where userId = #{userId} and password = #{password}
+    </select>
+
+    <select id="leaderCheck" parameterType="Account" resultType="String">
+        select userId from laccount where userId = #{userId} and password = #{password}
+    </select>
+
+    <select id="getInfo" parameterType="String" resultType="UserInfo">
+        select * from userInfo  where userId= #{userId}
+    </select>
+
+    <update id="updateInfo" parameterType="UserInfo">
+        update userInfo set userNo = #{userNo},mNo = #{mNo},userTel = #{userTel} where userId = #{userId}
+    </update>
+
+    <update id="updateMemberPassword" parameterType="Account">
+        update account set password = #{password} where userId = #{userId}
+    </update>
+
+    <insert id="createContext" parameterType="Notice">
+        insert into notice(userId,uploadtime,mainContext,remark) values(#{userId},#{uploadtime},#{mainContext},#{remark})
+    </insert>
+
+    <select id="getContext" parameterType="String" resultType="Notice">
+        select * from notice where userId = #{userId} order by uploadtime DESC
+    </select>
+
+    <update id="updateContext" parameterType="Notice">
+        update notice set mainContext = #{mainContext} , uploadtime = #{uploadtime},remark =#{remark} where nid = #{nid}
+    </update>
+
+    <select id="getRecords" parameterType="String" resultType="Record">
+        select * from record where userId = #{userId}
+    </select>
+
+    <delete id="deleteContext" parameterType="Integer">
+        delete from notice where nid = #{nid}
+    </delete>
+
+
+</mapper>

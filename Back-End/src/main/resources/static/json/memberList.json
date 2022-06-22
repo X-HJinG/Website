@@ -1,0 +1,36 @@
+[{
+    "id": 1,
+    "iconClass": "el-icon-location",
+    "title": "信息专栏",
+    "children": [{
+        "id": 101,
+        "path": "notice",
+        "detail": "公告发布"
+    }, {
+        "id": 102,
+        "path": "notice-management",
+        "detail": "公告管理"
+    }]
+}, {
+    "id": 2,
+    "iconClass": "el-icon-location",
+    "title": "考勤记录",
+    "children": [{
+        "id": 201,
+        "path": "record",
+        "detail": "出勤查询"
+    }]
+}, {
+    "id": 3,
+    "iconClass": "el-icon-location",
+    "title": "个人中心",
+    "children": [{
+        "id": 301,
+        "path": "info",
+        "detail": "个人资料"
+    }, {
+        "id": 302,
+        "path": "security",
+        "detail": "修改密码"
+    }]
+}]

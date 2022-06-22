@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Server.mapper.AdminMapper">
+
+    <select id="getAllMemberInfo" parameterType="UserInfo" resultType="UserInfo">
+        select *
+        from userInfo
+        where dNo = #{dNo} and userId != #{userId}
+    </select>
+
+    <insert id="createAccounts">
+        insert into account(userId,password,userName) values
+        <foreach collection="list" item="Account" separator=",">
+            (#{Account.userId},#{Account.password},#{Account.userName})
+        </foreach>
+    </insert>
+
+    <insert id="createMemberInfos">
+        insert into userInfo(userId,userName,dNo) values
+        <foreach collection="list" item="UserInfo" separator=",">
+            (#{UserInfo.userId},#{UserInfo.userName},#{UserInfo.dNo})
+        </foreach>
+    </insert>
+
+    <delete id="deleteMember" parameterType="String">
+        delete userInfo,account from userInfo INNER JOIN account
+        <where>
+            userInfo.userId = account.userId and account.userId = #{userId}
+        </where>
+    </delete>
+
+    <update id="resetPassword" parameterType="String">
+        update account set password = '123456' where userId = #{userId}
+    </update>
+
+
+    <update id="updateLeaderPassword" parameterType="Account">
+        update laccount set password = #{password} where userId = #{userId}
+    </update>
+
+</mapper>

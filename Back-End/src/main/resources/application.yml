@@ -1,0 +1,23 @@
+logging:
+  level:
+    Demo: debug
+server:
+  port: 8888
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/work?serverTimezone=Asia/Shanghai&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: yourpwd
+  redis:
+    host: localhost
+    port: 6379
+    password: yourpwd
+mybatis:
+  type-aliases-package: Server.pojo
+  mapper-locations: classpath:mappers/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#pagehelper:
+#  dialect: mysql

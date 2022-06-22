@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Server.mapper.ServiceMapper">
+    <resultMap id="noticeMap" type="Notice">
+        <id column="nid" property="nid"/>
+        <result column="userId" property="userId"/>
+        <result column="uploadtime" property="uploadtime"/>
+        <result column="mainContext" property="mainContext"/>
+        <result column="remark" property="remark"/>
+        <association property="userInfo" javaType="UserInfo">
+            <id column="userId" property="userId"/>
+            <result column="userName" property="userName"/>
+            <result column="userNo" property="userNo"/>
+            <result column="mNo" property="mNo"/>
+        </association>
+    </resultMap>
+
+    <select id="getNotice" resultMap="noticeMap">
+        select notice.nid,
+               notice.mainContext,
+               notice.uploadtime,
+               notice.remark,
+               info.userName,
+               info.userNo,
+               info.mNo
+        from notice
+        left join userInfo info
+        on notice.userId = info.userId
+        order by nid DESC,uploadtime DESC
+    </select>
+</mapper>
